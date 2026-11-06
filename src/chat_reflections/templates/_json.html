@@ -1,0 +1,7 @@
+{% macro json(kind, id) -%}
+{% set url = "/api/docs/" ~ kind ~ "/" ~ id | urlencode %}
+<details class="json" data-url="{{ url }}">
+  <summary>JSON · <a href="{{ url }}" target="_blank">open</a></summary>
+  <pre><code class="language-json">loading…</code></pre>
+</details>
+{%- endmacro %}

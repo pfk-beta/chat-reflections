@@ -1,0 +1,49 @@
+{"conversations": [
+  {
+    "context_uuid": "demo-pplx-sourdough",
+    "context_title": "Why is my sourdough starter not rising?",
+    "created_at": "2026-10-03T07:40:00.000000Z",
+    "updated_at": "2026-10-03T07:52:00.000000Z",
+    "mode": "COPILOT",
+    "collection_uuid": null,
+    "entries": [
+      {
+        "entry_uuid": "demo-pplx-sourdough-1",
+        "query": "Why is my sourdough starter not rising? It's 5 days old, fed once a day with all-purpose flour.",
+        "answer": "A 5-day-old starter that doesn't rise is very common — the early bubbly phase is often bacteria, not yeast, and activity can drop around days 4–7 before the yeast takes over.[1][2]\n\n## Most likely causes\n\n| Cause | What to try |\n|---|---|\n| Too cold (below 22 °C) | Keep it somewhere warm, around 24–26 °C [1] |\n| All-purpose flour only | Mix in 20–50% whole wheat or rye for more nutrients [2] |\n| Chlorinated water | Use filtered water or let tap water stand overnight [3] |\n| Feeding too rarely | Feed every 12 hours at a 1:1:1 ratio |\n\n## When is it ready?\n\nIt should reliably **double within 4–8 hours** of feeding, smell pleasantly sour and have an airy, domed surface.[2]",
+        "created_at": "2026-10-03T07:40:00.000000Z",
+        "label": null,
+        "query_status": "COMPLETED",
+        "engine_mode": "pro"
+      },
+      {
+        "entry_uuid": "demo-pplx-sourdough-2",
+        "query": "What does a liquid layer on top mean?",
+        "answer": "That grey or brown liquid is called **hooch** — alcohol produced by hungry yeast.[1] It means the starter is active but underfed. Stir it back in for a more sour flavour or pour it off for a milder one, then feed more often or use a larger feeding ratio (e.g. 1:2:2).[3]",
+        "created_at": "2026-10-03T07:52:00.000000Z",
+        "label": null,
+        "query_status": "COMPLETED",
+        "engine_mode": "pro"
+      }
+    ]
+  },
+  {
+    "context_uuid": "demo-pplx-search",
+    "context_title": "SQLite FTS5 vs Elasticsearch for a personal search app",
+    "created_at": "2026-08-21T20:10:00.000000Z",
+    "updated_at": "2026-08-21T20:10:00.000000Z",
+    "mode": "COPILOT",
+    "collection_uuid": null,
+    "entries": [
+      {
+        "entry_uuid": "demo-pplx-search-1",
+        "query": "SQLite FTS5 vs Elasticsearch for a small personal full-text search app?",
+        "answer": "For a single-user app with up to a few hundred thousand documents, both work; the trade-off is simplicity versus search features.[1][2]\n\n| | SQLite FTS5 | Elasticsearch |\n|---|---|---|\n| Setup | a file, no server | a JVM service (Docker) |\n| Ranking | BM25 | BM25, highly tunable |\n| Stemming / languages | basic (porter, unicode61) | 30+ language analyzers, plugins |\n| Highlighting | `highlight()` / `snippet()` | rich highlighters |\n| Aggregations, facets | manual SQL | built in |\n| Vector search | via extensions | built in (kNN, hybrid) |\n\n**Rule of thumb:** start with FTS5 if you want zero infrastructure; choose Elasticsearch if you need multilingual stemming, facets or hybrid semantic search.[2]",
+        "created_at": "2026-08-21T20:10:00.000000Z",
+        "label": null,
+        "query_status": "COMPLETED",
+        "engine_mode": "reasoning"
+      }
+    ]
+  }
+]}

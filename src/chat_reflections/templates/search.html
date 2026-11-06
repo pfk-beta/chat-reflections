@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ q or "Search" }} · {{ source }}{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block nav %}<span class="src">{{ source }}</span> <a href="/browse/{{ source }}">browse</a>{% endblock %}
+{% block content %}
+<div class="browse">
+  <nav class="list">
+    <form action="">
+      <input type="search" name="q" value="{{ q }}" placeholder="Search {{ 'everything' if source == 'all' else source }}" {% if not q %}autofocus{% endif %}>
+      <button>Search</button>
+      {% include "_project.html" %}
+    </form>
+    {% set pq = "&project=" ~ (project | urlencode) if project else "" %}
+    {% if q %}<div class="meta">{{ results | length }} conversations</div>{% endif %}
+    {% for r in results %}
+    <a class="item {% if conv and conv.id == r.conversation_id %}active{% endif %}" href="?q={{ q | urlencode }}{{ pq }}&c={{ r.conversation_id | urlencode }}#m{{ r.position }}">
+      <div class="t">{{ r.title }}</div>
+      <div class="meta">{% if source == "all" %}<span class="src">{{ r.source }}</span> {% endif %}{{ r.created_at[:10] if r.created_at }} · {{ r.role }}{% if r.project and not project %} · {{ r.project | home }}{% endif %}</div>
+      {% for h in r.highlight[:1] %}<div class="snip">…{{ h | safe }}…</div>{% endfor %}
+    </a>
+    {% else %}
+      {% if q %}<p>No results.</p>{% endif %}
+    {% endfor %}
+  </nav>
+
+  {% include "_conversation.html" %}
+</div>
+{% endblock %}

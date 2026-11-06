@@ -1,0 +1,28 @@
+[
+  {
+    "id": "demo-owui-haiku",
+    "user_id": "demo-user",
+    "title": "Haiku about version control",
+    "chat": {
+      "id": "demo-owui-haiku",
+      "title": "Haiku about version control",
+      "models": ["qwen3:14b"],
+      "history": {
+        "currentId": "demo-owui-a3",
+        "messages": {
+          "demo-owui-u1": {"id": "demo-owui-u1", "parentId": null, "childrenIds": ["demo-owui-a1", "demo-owui-a2"], "role": "user", "content": "Write a haiku about git merge conflicts.", "timestamp": 1785398400},
+          "demo-owui-a1": {"id": "demo-owui-a1", "parentId": "demo-owui-u1", "childrenIds": [], "role": "assistant", "content": "Two branches collide\nangle brackets bloom in red\nwho wrote this line, who?", "model": "qwen3:14b", "timestamp": 1785398405},
+          "demo-owui-a2": {"id": "demo-owui-a2", "parentId": "demo-owui-u1", "childrenIds": ["demo-owui-u2"], "role": "assistant", "content": "Two paths meet at dusk —\n`<<<<<<<` marks the old quarrel,\nI keep both, and sigh.", "model": "qwen3:14b", "timestamp": 1785398412},
+          "demo-owui-u2": {"id": "demo-owui-u2", "parentId": "demo-owui-a2", "childrenIds": ["demo-owui-a3"], "role": "user", "content": "Nice. Now one about `git rebase -i`.", "timestamp": 1785398460},
+          "demo-owui-a3": {"id": "demo-owui-a3", "parentId": "demo-owui-u2", "childrenIds": [], "role": "assistant", "content": "Squash, reword, reorder —\nhistory rewritten so clean\nno one saw me fail.", "model": "qwen3:14b", "timestamp": 1785398466}
+        }
+      },
+      "messages": [],
+      "files": [],
+      "tags": [],
+      "timestamp": 1785398400000
+    },
+    "updated_at": 1785398466,
+    "created_at": 1785398400
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "g1",
+    "conversation_id": "g1",
+    "title": "Pierogi z kapustą",
+    "create_time": 1767225600.0,
+    "update_time": 1767226000.0,
+    "current_node": "a2",
+    "default_model_slug": null,
+    "is_archived": false,
+    "mapping": {
+      "root": {"id": "root", "message": null, "parent": null},
+      "u1": {"id": "u1", "parent": "root", "message": {
+        "id": "u1", "author": {"role": "user", "name": null}, "create_time": 1767225600.0,
+        "content": {"content_type": "text", "parts": ["Jak zrobić pierogi z kapustą?"]},
+        "metadata": {}}},
+      "a1": {"id": "a1", "parent": "u1", "message": {
+        "id": "a1", "author": {"role": "assistant", "name": null}, "create_time": 1767225610.0,
+        "content": {"content_type": "text", "parts": ["Stara odpowiedź (przed regeneracją)."]},
+        "metadata": {"model_slug": "gpt-4o"}}},
+      "t2": {"id": "t2", "parent": "u1", "message": {
+        "id": "t2", "author": {"role": "assistant", "name": null}, "create_time": 1767225620.0,
+        "content": {"content_type": "thoughts", "source_analysis_msg_id": "x",
+          "thoughts": [{"summary": "Przepis", "content": "Użytkownik pyta o farsz.", "chunks": [], "finished": true}]},
+        "metadata": {"model_slug": "gpt-5"}}},
+      "r2": {"id": "r2", "parent": "t2", "message": {
+        "id": "r2", "author": {"role": "assistant", "name": null}, "create_time": 1767225621.0,
+        "content": {"content_type": "reasoning_recap", "content": "Myślał przez 5s"},
+        "metadata": {"model_slug": "gpt-5"}}},
+      "a2": {"id": "a2", "parent": "r2", "message": {
+        "id": "a2", "author": {"role": "assistant", "name": null}, "create_time": 1767225630.0,
+        "content": {"content_type": "text", "parts": ["Ugotuj kapustę kiszoną i podsmaż z entity[\"food\", \"cebulą\", 0].citeturn0search1"]},
+        "metadata": {"model_slug": "gpt-5"}}}
+    }
+  },
+  {
+    "id": "g2",
+    "conversation_id": "g2",
+    "title": "",
+    "create_time": 1767312000.0,
+    "update_time": null,
+    "current_node": "u2",
+    "mapping": {
+      "root": {"id": "root", "message": null, "parent": null},
+      "u1": {"id": "u1", "parent": "root", "message": {
+        "id": "u1", "author": {"role": "user", "name": null}, "create_time": null,
+        "content": {"content_type": "multimodal_text", "parts": [
+          {"content_type": "image_asset_pointer", "asset_pointer": "file-service://file-x", "width": 10, "height": 10},
+          "Co jest na zdjęciu?"]}}},
+      "e1": {"id": "e1", "parent": "u1", "message": {
+        "id": "e1", "author": {"role": "assistant", "name": null}, "create_time": null,
+        "content": {"content_type": "text", "parts": [""]},
+        "metadata": {}}},
+      "u2": {"id": "u2", "parent": "e1", "message": {
+        "id": "u2", "author": {"role": "user", "name": null}, "create_time": null,
+        "content": {"content_type": "text", "parts": ["Halo?"]}}}
+    }
+  }
+]

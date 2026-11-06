@@ -1,0 +1,29 @@
+[
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted and now in Rust?",
+    "time": "2026-03-01T10:05:00.000Z",
+    "products": ["Gemini Apps"],
+    "details": [{"name": "https://gemini.google.com/app/abc123", "url": "https://gemini.google.com/app/abc123"}],
+    "activityControls": ["Gemini Apps Activity"],
+    "safeHtmlItem": [{"html": "<p>Sure:</p>\n<pre><code>fn main() {\n    println!(\"hi\");\n}\n</code></pre>"}]
+  },
+  {
+    "header": "Aplikacje z Gemini",
+    "title": "Wysłano zapytanie: Jak wypisać hello world w Pythonie?",
+    "time": "2026-03-01T10:00:00.000Z",
+    "products": ["Aplikacje z Gemini"],
+    "details": [{"name": "https://gemini.google.com/app/abc123", "url": "https://gemini.google.com/app/abc123"}],
+    "activityControls": ["Aktywność w aplikacjach z Gemini"],
+    "safeHtmlItem": [{"html": "<h3>Odpowiedź</h3>\n<p>Użyj <code>print</code> &amp; <strong>gotowe</strong>:</p>\n<ul>\n<li><p>krok <em>pierwszy</em></p></li>\n<li>krok drugi, <a href=\"https://python.org\">docs</a></li>\n</ul>\n<hr>\n<ol><li>a</li></ol>"}]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted draw a cat",
+    "time": "2026-03-02T08:00:00.000Z",
+    "imageFile": "my-cat.png",
+    "attachedFiles": ["generated-cat.png", "my-cat.png"],
+    "products": ["Gemini Apps"],
+    "activityControls": ["Gemini Apps Activity"]
+  }
+]

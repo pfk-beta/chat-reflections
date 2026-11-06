@@ -1,0 +1,28 @@
+[
+  {
+    "id": "o1",
+    "user_id": "u",
+    "title": "Pomysły na prace plastyczne",
+    "chat": {
+      "id": "o1",
+      "title": "Pomysły na prace plastyczne",
+      "models": ["qwen"],
+      "history": {
+        "currentId": "a2",
+        "messages": {
+          "u1": {"id": "u1", "parentId": null, "childrenIds": ["a1"], "role": "user", "content": "Stara wersja pytania", "timestamp": 1793708744},
+          "a1": {"id": "a1", "parentId": "u1", "childrenIds": [], "role": "assistant", "content": "Stara odpowiedź", "model": "qwen", "timestamp": 1793708744},
+          "u2": {"id": "u2", "parentId": null, "childrenIds": ["r2"], "role": "user", "content": "Co zrobić z rysunkami dzieci?", "timestamp": 1793708762},
+          "r2": {"id": "r2", "parentId": "u2", "childrenIds": ["a2"], "role": "assistant", "content": "", "model": "qwen", "timestamp": 1793708763, "output": [{"type": "reasoning"}]},
+          "a2": {"id": "a2", "parentId": "r2", "childrenIds": [], "role": "assistant", "content": "Zrób z nich album.", "model": "qwen", "timestamp": 1793708770}
+        }
+      },
+      "messages": [],
+      "files": [],
+      "tags": [],
+      "timestamp": 1793708744893
+    },
+    "updated_at": 1793708786,
+    "created_at": 1793708744
+  }
+]

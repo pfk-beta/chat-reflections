@@ -1,0 +1,6 @@
+{% if projects %}
+<select name="project" onchange="this.form.submit()">
+  <option value="">all projects</option>
+  {% for p in projects %}<option value="{{ p }}" {% if p == project %}selected{% endif %}>{{ p | home }}</option>{% endfor %}
+</select>
+{% endif %}

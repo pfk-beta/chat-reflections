@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.9.3"
+
+      - name: Start Elasticsearch
+        run: docker compose up -d --build --wait es
+
+      - run: uv sync --frozen
+      - name: Lint
+        run: make lint
+      - name: Test
+        run: make test-all
+
+      - name: Build app image
+        run: docker compose build app

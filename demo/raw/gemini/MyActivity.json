@@ -1,0 +1,20 @@
+[
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted Which houseplants survive in a north-facing room?",
+    "time": "2026-03-04T18:20:00.000Z",
+    "products": ["Gemini Apps"],
+    "details": [{"name": "https://gemini.google.com/app/demo0001", "url": "https://gemini.google.com/app/demo0001"}],
+    "activityControls": ["Gemini Apps Activity"],
+    "safeHtmlItem": [{"html": "<p>North-facing rooms get indirect light only, so pick <strong>low-light tolerant</strong> plants:</p>\n<ul>\n<li><strong>Snake plant</strong> – thrives on neglect, water every 2–3 weeks.</li>\n<li><strong>ZZ plant</strong> – glossy leaves, stores water in its rhizomes.</li>\n<li><strong>Pothos</strong> – trailing, tells you when it's thirsty by drooping.</li>\n</ul>\n<p>Keep them within about 2 m of the window and avoid overwatering — in low light, soil dries slowly.</p>"}]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted Is pothos safe for cats?",
+    "time": "2026-03-04T18:24:00.000Z",
+    "products": ["Gemini Apps"],
+    "details": [{"name": "https://gemini.google.com/app/demo0001", "url": "https://gemini.google.com/app/demo0001"}],
+    "activityControls": ["Gemini Apps Activity"],
+    "safeHtmlItem": [{"html": "<p>No. Pothos contains calcium oxalate crystals and is <em>toxic to cats</em>: chewing it causes mouth irritation, drooling and vomiting.</p>\n<p>Cat-safe alternatives for low light:</p>\n<ol>\n<li>Parlor palm</li>\n<li>Cast-iron plant</li>\n<li>Calathea (needs more humidity)</li>\n</ol>"}]
+  }
+]

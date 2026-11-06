@@ -1,0 +1,14 @@
+{"conversations": [
+  {
+    "context_uuid": "p1",
+    "context_title": "Obiady na cały tydzień",
+    "created_at": "2026-11-04T19:17:13.936939Z",
+    "updated_at": "2026-11-04T19:18:14.965329Z",
+    "mode": "COPILOT",
+    "collection_uuid": null,
+    "entries": [
+      {"entry_uuid": "e1", "query": "Co ugotować na obiad?", "answer": "Makaron ze szpinakiem.", "created_at": "2026-11-04T19:17:13.998889Z", "label": null, "query_status": "COMPLETED", "engine_mode": "pro"},
+      {"entry_uuid": "e2", "query": "A coś bez glutenu?", "answer": "", "created_at": "2026-11-04T19:18:00.000000Z", "label": null, "query_status": "PENDING", "engine_mode": null}
+    ]
+  }
+]}

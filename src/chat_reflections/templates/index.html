@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cards">
+  {% for source, count in cards %}
+  <div class="card">
+    <h2>{{ source | label }}</h2>
+    <div class="meta">{{ count }} conversations</div>
+    <div class="actions">
+      <a class="btn" href="/browse/{{ source }}">Browse</a>
+      <a class="btn secondary" href="/search/{{ source }}">Search</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

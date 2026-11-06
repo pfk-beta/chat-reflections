@@ -1,0 +1,41 @@
+[project]
+name = "chat-reflections"
+version = "0.1.0"
+description = "Search and browse your LLM conversation history (ChatGPT, Claude, Gemini, Perplexity, Open WebUI, Claude Code) locally"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "elasticsearch>=8.17,<9",
+    "fastapi>=0.115",
+    "jinja2>=3.1",
+    "markdown-it-py>=3.0",
+    "mdit-py-plugins>=0.4",
+    "uvicorn>=0.32",
+]
+
+[project.scripts]
+chat-reflections = "chat_reflections.cli:main"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28",
+    "pyright>=1.1.390",
+    "pytest>=8.3",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+markers = ["es: requires running Elasticsearch (make up)"]
+
+[tool.pyright]
+include = ["src", "tests"]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "demo-gpt-1",
+    "conversation_id": "demo-gpt-1",
+    "title": "Git: undo the last commit",
+    "create_time": 1772351400.0,
+    "update_time": 1772351700.0,
+    "current_node": "demo-gpt-1-a2",
+    "mapping": {
+      "demo-gpt-1-root": {"id": "demo-gpt-1-root", "message": null, "parent": null},
+      "demo-gpt-1-u1": {"id": "demo-gpt-1-u1", "parent": "demo-gpt-1-root", "message": {
+        "id": "demo-gpt-1-u1", "author": {"role": "user", "name": null}, "create_time": 1772351400.0,
+        "content": {"content_type": "text", "parts": ["I committed to the wrong branch. How do I undo the last commit but keep my changes?"]},
+        "metadata": {}}},
+      "demo-gpt-1-t1": {"id": "demo-gpt-1-t1", "parent": "demo-gpt-1-u1", "message": {
+        "id": "demo-gpt-1-t1", "author": {"role": "assistant", "name": null}, "create_time": 1772351410.0,
+        "content": {"content_type": "thoughts", "source_analysis_msg_id": "demo",
+          "thoughts": [{"summary": "Choosing reset mode", "content": "They want to keep the changes, so `--soft` (staged) or the default `--mixed` (unstaged). Mention moving the commit to another branch, and warn about pushed commits.", "chunks": [], "finished": true}]},
+        "metadata": {"model_slug": "gpt-5"}}},
+      "demo-gpt-1-a1": {"id": "demo-gpt-1-a1", "parent": "demo-gpt-1-t1", "message": {
+        "id": "demo-gpt-1-a1", "author": {"role": "assistant", "name": null}, "create_time": 1772351420.0,
+        "content": {"content_type": "text", "parts": ["Use a soft reset. It moves the branch back one commit and leaves your changes staged:\n\n```sh\ngit reset --soft HEAD~1\n```\n\nThen switch to the right branch and commit again:\n\n```sh\ngit switch feature/login\ngit commit -m \"Add login form\"\n```\n\n| Command | Changes end up |\n|---|---|\n| `git reset --soft HEAD~1` | staged |\n| `git reset HEAD~1` | unstaged (working tree) |\n| `git reset --hard HEAD~1` | **deleted** |\n\nIf you already pushed the commit, prefer `git revert HEAD`, which doesn't rewrite shared history."]},
+        "metadata": {"model_slug": "gpt-5"}}},
+      "demo-gpt-1-u2": {"id": "demo-gpt-1-u2", "parent": "demo-gpt-1-a1", "message": {
+        "id": "demo-gpt-1-u2", "author": {"role": "user", "name": null}, "create_time": 1772351600.0,
+        "content": {"content_type": "text", "parts": ["And if I want to undo the reset itself?"]},
+        "metadata": {}}},
+      "demo-gpt-1-a2": {"id": "demo-gpt-1-a2", "parent": "demo-gpt-1-u2", "message": {
+        "id": "demo-gpt-1-a2", "author": {"role": "assistant", "name": null}, "create_time": 1772351610.0,
+        "content": {"content_type": "text", "parts": ["The old commit is still in the reflog. Find it and reset back to it:\n\n```sh\ngit reflog\ngit reset --soft HEAD@{1}\n```"]},
+        "metadata": {"model_slug": "gpt-5"}}}
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ conv.title[:80] if conv else source }}{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block nav %}<span class="src">{{ source }}</span> <span class="meta">{{ total }} conversations</span> <a href="/search/{{ source }}">search</a>{% endblock %}
+{% block content %}
+<div class="browse">
+  <nav class="list">
+    {% set pq = "&project=" ~ (project | urlencode) if project else "" %}
+    {% if projects %}<form action="">{% include "_project.html" %}</form>{% endif %}
+    {% for i in items %}
+    <a class="item {% if conv and conv.id == i.id %}active{% endif %}" href="?page={{ page }}{{ pq }}&c={{ i.id | urlencode }}">
+      <div class="t">{{ i.title }}</div>
+      <div class="meta">{% if source == "all" %}<span class="src">{{ i.source }}</span> {% endif %}{{ i.updated_at[:10] }} · {{ i.message_count }} msgs{% if i.project and not project %} · {{ i.project | home }}{% endif %}</div>
+    </a>
+    {% endfor %}
+    {% if pages > 1 %}
+    <div class="pager">
+      {% if page > 1 %}<a href="?page={{ page - 1 }}{{ pq }}">← newer</a>{% endif %}
+      <span class="meta">{{ page }} / {{ pages }}</span>
+      {% if page < pages %}<a href="?page={{ page + 1 }}{{ pq }}">older →</a>{% endif %}
+    </div>
+    {% endif %}
+  </nav>
+
+  {% include "_conversation.html" %}
+</div>
+{% endblock %}

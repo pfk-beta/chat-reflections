@@ -1,0 +1,48 @@
+{% from "_json.html" import json %}
+  <main class="content">
+    {% if conv %}
+    <h2>{{ conv.title }}</h2>
+    <div class="meta"><span class="src">{{ conv.source }}</span> {{ conv.created_at[:10] }} · {{ conv.models | join(", ") }}{% if conv.project %} · {{ conv.project | home }}{% endif %}</div>
+    {{ json("conversations", conv.id) }}
+    {% for m in conv.messages %}
+    <div class="msg {{ m.role }}" id="m{{ m.position }}">
+      <div class="head meta"><span>{{ m.role }}{% if m.model %} · {{ m.model }}{% endif %}</span></div>
+      {% if m.parts %}
+      {% for p in m.parts %}
+        {% if p.type == "text" %}{{ p.text | md | safe }}
+        {% elif p.type == "image" %}
+        <a class="image" href="/api/images/{{ loop.index0 }}/{{ m.id | urlencode }}" target="_blank" title="{{ p.name }}"><img src="/api/images/{{ loop.index0 }}/{{ m.id | urlencode }}" alt="{{ p.name }}" loading="lazy"></a>
+        {% elif p.type == "thinking" %}
+        <details class="part"><summary>💭 thinking</summary><div class="body">{{ p.text | md | safe }}</div></details>
+        {% elif p.type == "summary" %}
+        <details class="part"><summary>📋 compaction summary</summary><div class="body">{{ p.text | md | safe }}</div></details>
+        {% elif p.type == "tool" %}
+        {% set hint = p.input.description or p.input.command or p.input.file_path or p.input.pattern or p.input.url or p.input.prompt or "" %}
+        <details class="part tool{% if p.is_error %} error{% endif %}">
+          <summary>🔧 <b>{{ p.name }}</b> <span class="hint">{{ hint | string | truncate(100) }}</span></summary>
+          <div class="body">
+            <div class="meta">input</div>
+            <pre><code class="language-json">{{ p.input | tojson(indent=2) }}</code></pre>
+            {% if p.output is not none %}
+            <div class="meta">output{% if p.is_error %} (error){% endif %}</div>
+            <pre><code class="nohighlight">{{ p.output }}</code></pre>
+            {% endif %}
+          </div>
+        </details>
+        {% elif p.type == "command" %}
+        <details class="part command">
+          <summary>{% if p.name == "!" %}$ <b>{{ p.args }}</b>{% else %}⌘ <b>{{ p.name or "command output" }}</b> <span class="hint">{{ p.args }}</span>{% endif %}</summary>
+          <div class="body">{% if p.output %}<pre><code class="nohighlight">{{ p.output }}</code></pre>{% else %}<span class="meta">no output</span>{% endif %}</div>
+        </details>
+        {% endif %}
+      {% endfor %}
+      {% else %}
+      {{ m.content | md | safe }}
+      {% endif %}
+      {{ json("messages", m.id) }}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="meta">Pick a conversation from the list.</p>
+    {% endif %}
+  </main>

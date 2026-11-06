@@ -1,0 +1,15 @@
+[
+  {
+    "uuid": "c1",
+    "name": "Konfiguracja Firebase",
+    "summary": "",
+    "created_at": "2024-09-07T21:44:05.556573Z",
+    "updated_at": "2024-09-07T22:04:08.232942Z",
+    "account": {"uuid": "acc"},
+    "chat_messages": [
+      {"uuid": "m1", "text": "Jak skonfigurować emulatory Firebase?", "content": [{"type": "text", "text": "Jak skonfigurować emulatory Firebase?"}], "sender": "human", "created_at": "2024-09-07T21:44:14.663473Z", "updated_at": "2024-09-07T21:44:14.663473Z", "attachments": [], "files": [], "parent_message_uuid": "00000000-0000-4000-8000-000000000000"},
+      {"uuid": "m2", "text": "Uruchom firebase init emulators.", "content": [{"type": "text", "text": "Uruchom firebase init emulators."}], "sender": "assistant", "created_at": "2024-09-07T21:44:20.000000Z", "updated_at": "2024-09-07T21:44:20.000000Z", "attachments": [], "files": [], "parent_message_uuid": "m1"},
+      {"uuid": "m3", "text": "", "content": [{"type": "token_budget"}], "sender": "assistant", "created_at": "2024-09-07T21:44:21.000000Z", "updated_at": "2024-09-07T21:44:21.000000Z", "attachments": [], "files": [], "parent_message_uuid": "m2"}
+    ]
+  }
+]

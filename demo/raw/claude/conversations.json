@@ -1,0 +1,82 @@
+[
+  {
+    "uuid": "demo-claude-attention",
+    "name": "Scaled dot-product attention explained",
+    "summary": "",
+    "created_at": "2026-09-14T18:02:11.000000Z",
+    "updated_at": "2026-09-14T18:09:40.000000Z",
+    "account": {"uuid": "demo-account"},
+    "chat_messages": [
+      {
+        "uuid": "demo-claude-attention-1",
+        "text": "Can you explain scaled dot-product attention? Why do we divide by the square root of d_k?",
+        "content": [{"type": "text", "text": "Can you explain scaled dot-product attention? Why do we divide by the square root of d_k?"}],
+        "sender": "human",
+        "created_at": "2026-09-14T18:02:11.000000Z",
+        "updated_at": "2026-09-14T18:02:11.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+      },
+      {
+        "uuid": "demo-claude-attention-2",
+        "text": "Attention lets every token build its representation as a weighted mix of all other tokens. Each token is projected into a **query** \\(q\\), a **key** \\(k\\) and a **value** \\(v\\):\n\n$$\n\\mathrm{Attention}(Q, K, V) = \\mathrm{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}}\\right) V\n$$\n\n### Why divide by \\(\\sqrt{d_k}\\)?\n\nIf the components of \\(q\\) and \\(k\\) are independent with mean 0 and variance 1, their dot product \\(q \\cdot k = \\sum_{i=1}^{d_k} q_i k_i\\) has variance \\(d_k\\). For large \\(d_k\\) the logits get huge, softmax saturates and gradients vanish. Dividing by \\(\\sqrt{d_k}\\) brings the variance back to 1.\n\nA minimal NumPy version:\n\n```python\nimport numpy as np\n\ndef attention(Q: np.ndarray, K: np.ndarray, V: np.ndarray) -> np.ndarray:\n    d_k = Q.shape[-1]\n    scores = Q @ K.T / np.sqrt(d_k)\n    weights = np.exp(scores - scores.max(axis=-1, keepdims=True))\n    weights /= weights.sum(axis=-1, keepdims=True)\n    return weights @ V\n```\n\n| Shape | Meaning |\n|---|---|\n| `Q: (n, d_k)` | one query per token |\n| `K: (m, d_k)` | one key per token attended to |\n| `V: (m, d_v)` | values that get mixed |\n| output `(n, d_v)` | new representation per query |",
+        "content": [{"type": "text", "text": "(see text)"}],
+        "sender": "assistant",
+        "created_at": "2026-09-14T18:02:30.000000Z",
+        "updated_at": "2026-09-14T18:02:30.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "demo-claude-attention-1"
+      },
+      {
+        "uuid": "demo-claude-attention-3",
+        "text": "And multi-head attention is just several of these in parallel?",
+        "content": [{"type": "text", "text": "And multi-head attention is just several of these in parallel?"}],
+        "sender": "human",
+        "created_at": "2026-09-14T18:08:55.000000Z",
+        "updated_at": "2026-09-14T18:08:55.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "demo-claude-attention-2"
+      },
+      {
+        "uuid": "demo-claude-attention-4",
+        "text": "Exactly. With \\(h\\) heads, each head has its own projections \\(W_i^Q, W_i^K, W_i^V\\) into a smaller space \\(d_k = d_{model} / h\\). The heads run in parallel, their outputs are concatenated and projected once more:\n\n\\[ \\mathrm{MultiHead}(Q,K,V) = \\mathrm{Concat}(\\mathrm{head}_1, \\dots, \\mathrm{head}_h) W^O \\]\n\nThe total cost is about the same as one full-width head, but each head can specialise, e.g. one tracks syntax, another coreference.",
+        "content": [{"type": "text", "text": "(see text)"}],
+        "sender": "assistant",
+        "created_at": "2026-09-14T18:09:40.000000Z",
+        "updated_at": "2026-09-14T18:09:40.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "demo-claude-attention-3"
+      }
+    ]
+  },
+  {
+    "uuid": "demo-claude-retry",
+    "name": "Retry decorator with exponential backoff",
+    "summary": "",
+    "created_at": "2026-07-02T09:15:00.000000Z",
+    "updated_at": "2026-07-02T09:16:10.000000Z",
+    "account": {"uuid": "demo-account"},
+    "chat_messages": [
+      {
+        "uuid": "demo-claude-retry-1",
+        "text": "Write a small Python decorator that retries a function with exponential backoff and jitter. No external libraries.",
+        "content": [{"type": "text", "text": "Write a small Python decorator that retries a function with exponential backoff and jitter. No external libraries."}],
+        "sender": "human",
+        "created_at": "2026-07-02T09:15:00.000000Z",
+        "updated_at": "2026-07-02T09:15:00.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+      },
+      {
+        "uuid": "demo-claude-retry-2",
+        "text": "Here is a dependency-free version:\n\n```python\nimport functools\nimport random\nimport time\n\n\ndef retry(times: int = 5, base: float = 0.5, cap: float = 30.0, exceptions=(Exception,)):\n    def decorator(fn):\n        @functools.wraps(fn)\n        def wrapper(*args, **kwargs):\n            for attempt in range(times):\n                try:\n                    return fn(*args, **kwargs)\n                except exceptions:\n                    if attempt == times - 1:\n                        raise\n                    delay = min(cap, base * 2**attempt)\n                    time.sleep(random.uniform(0, delay))  # full jitter\n        return wrapper\n    return decorator\n```\n\nUsage:\n\n```python\n@retry(times=3, exceptions=(ConnectionError,))\ndef fetch():\n    ...\n```\n\n*Full jitter* (a random delay between 0 and the backoff) spreads retries from many clients, so they don't hammer the server in sync.",
+        "content": [{"type": "text", "text": "(see text)"}],
+        "sender": "assistant",
+        "created_at": "2026-07-02T09:16:10.000000Z",
+        "updated_at": "2026-07-02T09:16:10.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "demo-claude-retry-1"
+      }
+    ]
+  }
+]
